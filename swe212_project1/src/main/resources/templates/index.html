@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SWE212_Group4</title>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 3px;}
+    </style>
+</head>
+
+<body>
+<h1 th:allign="center"><strong>Employee</strong></h1>
+<p th:allign="center"><a th:href="@{/addemp}">Add Employee</a></p>
+
+<table th:allign="center">
+
+    <thead th:bgcolor="turquoise">
+    <tr>
+        <th>Emp No</th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Manager No</th>
+        <th>Hire Date</th>
+        <th>Salary</th>
+        <th>Commission</th>
+        <th>Dept No</th>
+        <th colspan="2">Operation</th>
+    </tr>
+    </thead>
+
+    <tbody th:bgcolor="orange">
+    <tr th:each="employee:${eList}">
+        <td th:text="*{employee.numID}"></td>
+        <td th:text="*{employee.name}"></td>
+        <td th:text="*{employee.job}"></td>
+        <td th:text="*{employee.managerID}"></td>
+        <td th:text="*{employee.hireDate}"></td>
+        <td th:text="*{employee.salary}"></td>
+        <td th:text="*{employee.commission}"></td>
+        <td th:text="*{employee.deptNo}"></td>
+        <td><a th:href="@{/update/{id}(id=${employee.numID})}">Update</a></td>
+        <td><a th:href="@{/delete/{id}(id=${employee.numID})}">Delete</a></td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
+</html>

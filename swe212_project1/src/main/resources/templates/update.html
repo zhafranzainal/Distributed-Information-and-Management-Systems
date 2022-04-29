@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+    <style>
+        label{
+            display: block;
+            float: left;
+            width: 100px;}
+    </style>
+</head>
+
+<body>
+<br><br>
+
+<form action="#" th:action="@{/update}" th:object="${employee}" method="post">
+
+    <label for="noID">ID</label>
+    <input type="text" th:field="*{numID}" id="noID" placeholder="ID"><br>
+
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name"><br>
+
+    <label for="job">Job</label>
+    <input type="text" th:field="*{job}" id="job" placeholder="Job"><br>
+
+    <label for="managerID">Manager ID</label>
+    <input type="text" th:field="*{managerID}" id="managerID" placeholder="Manager ID"><br>
+
+    <label for="hireDate">Hire Date</label>
+    <input type="text" th:field="*{hireDate}" id="hireDate" placeholder="Hire Date"><br>
+
+    <label for="salary">Salary</label>
+    <input type="text" th:field="*{salary}" id="salary" placeholder="Salary"><br>
+
+    <label for="commission">Commission</label>
+    <input type="text" th:field="*{commission}" id="commission" placeholder="Commission"><br>
+
+    <label for="deptNo">Dept No</label>
+    <input type="text" th:field="*{deptNo}" id="deptNo" placeholder="DeptNo"><br>
+
+    <br>
+    <input type="submit" value="Update Employee">
+
+</form>
+</body>
+</html>

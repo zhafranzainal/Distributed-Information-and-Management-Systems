@@ -47,26 +47,13 @@ public class EmployeeController{
         return "addemp";}
 
     @PostMapping("/add")
-    public String addEmploy(Employee employee, Model model){
+    public String addEmp(Employee employee, Model model){
         employeeList.add(employee);
         model.addAttribute("eList", employeeList);
         return "index";}
 
-    @GetMapping("/delete/{id}")
-    public String deleteEmploy(@PathVariable("id") String numID, Model model){
-
-        for(Employee emp:employeeList){
-            if(emp.getNumID().equals(numID)){
-                employeeList.remove(emp);
-                break;}
-        }
-
-        model.addAttribute("eList", employeeList);
-        return "index";
-    }
-
     @GetMapping("/update/{id}")
-    public String updateEmploy(@PathVariable("id") String numID, Model model){
+    public String updateEmployee(@PathVariable("id") String numID, Model model){
 
         for(Employee emp:employeeList){
             if(emp.getNumID().equals(numID)){
@@ -78,7 +65,7 @@ public class EmployeeController{
     }
 
     @PostMapping("/update")
-    public String updateUser(Employee employee, Model model){
+    public String updateEmp(Employee employee, Model model){
 
         for(Employee emp:employeeList){
             if(emp.getNumID().equals(employee.getNumID())){
@@ -95,6 +82,19 @@ public class EmployeeController{
             model.addAttribute("eList", employeeList);
         }
 
+        return "index";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") String numID, Model model){
+
+        for(Employee emp:employeeList){
+            if(emp.getNumID().equals(numID)){
+                employeeList.remove(emp);
+                break;}
+        }
+
+        model.addAttribute("eList", employeeList);
         return "index";
     }
 

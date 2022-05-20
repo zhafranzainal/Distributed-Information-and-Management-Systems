@@ -32,6 +32,7 @@
             <div class="card float-end">
                 <a href="#" th:onclick="Add()" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add New</a>
             </div>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -46,6 +47,7 @@
                     <th colspan="2">Operations</th>
                 </tr>
                 </thead>
+
                 <tbody>
                 <tr th:each="employee : ${eList}">
                     <td th:text="*{employee.empno}"></td>
@@ -58,50 +60,36 @@
                     <td th:text="*{employee.deptno}"></td>
                     <td><a th:href="@{/update/{id}(id=${employee.empno})}" class="btn btn-warning"><i class="fa fa-pencil"></i></a></td>
                     <td><a th:href="@{/delete/{id}(id=${employee.empno})}" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
-
                 </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+
     function Add(){
         $.ajax({
             method: 'GET',
             url: "/addemployee",
-            success: function (data) {
+            success: function (data){
                 $('#modalPlaceHolder').html(data);
                 $('#modalPlaceHolder').find('.modal').modal("show");
             },
-            error: function (response) {
+            error: function (response){
                 alert("Message: " + r.Message);
                 alert("StackTrace: " + r.StackTrace);
                 alert("ExceptionType: " + r.ExceptionType);
             }
         });
     }
-    // function Update(id) {
-    //     //alert(id);
-    //     $.ajax({
-    //         method: 'GET  ',
-    //         url: "updateemployee",
-    //         data: {"id": id},
-    //         success: function (data) {
-    //             $('#modalPlaceHolder').html(data);
-    //             $('#modalPlaceHolder').find('.modal').modal('show');
-    //         },
-    //         error: function (response) {
-    //             alert("Message: " + r.Message);
-    //             alert("StackTrace: " + r.StackTrace);
-    //             alert("ExceptionType: " + r.ExceptionType);
-    //         }
-    //     });
-    // }
 
 </script>
+
 </body>
 </html>

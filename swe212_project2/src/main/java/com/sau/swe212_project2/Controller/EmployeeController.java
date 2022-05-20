@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -60,7 +61,7 @@ public class EmployeeController{
     @GetMapping("/addemployee")
     public String addEmployee(Model model){
         EmpEntity employee = new EmpEntity();
-        model.addAttribute("employee", employee);
+        model.addAttribute("emp", employee);
         return "addemp";}
 
     @PostMapping("/add")
@@ -71,14 +72,19 @@ public class EmployeeController{
     @GetMapping("/update/{id}")
     public String update(@PathVariable(value = "id") Integer id, Model model){
 
-        for(EmpEntity emp : empRepo.findAll()){
-            if(emp.getEmpno() == id){
-                model.addAttribute("employee", emp);
+        for(EmpEntity employee : empRepo.findAll()){
+            if(employee.getEmpno() == id){
+                model.addAttribute("emp", employee);
                 break;}
         }
 
         return "updateemp";
     }
+
+    @PostMapping("/update")
+    public String updateEmp(@ModelAttribute("emp") EmpEntity employee){
+        empRepo.save(employee);
+        return "redirect:/";}
 
     @GetMapping("/deleteemployee")
     public String deleteEmployee(int empno, Model model){
@@ -86,9 +92,9 @@ public class EmployeeController{
         model.addAttribute("employee", emp);
         return "deleteemp";}
 
-    @PostMapping("/delete")
-    public String deleteEmp(int empno){
-        empRepo.deleteById(empno);
+    @GetMapping("/delete/{id}")
+    public String deleteEmp(@PathVariable(value = "id") Integer id){
+        empRepo.deleteById(id);
         return "redirect:/";}
 }
 

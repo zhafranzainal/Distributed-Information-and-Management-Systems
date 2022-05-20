@@ -10,7 +10,6 @@ public class EmpEntity{
 
     @Basic
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "EMPNO", nullable = false)
     private int empno;
 

@@ -28,12 +28,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
 
-        http.authorizeRequests().antMatchers("/").permitAll().
-                antMatchers("/addemployee").hasAnyRole("USER","ADMIN").antMatchers("/delete/{id}").hasAnyRole("ADMIN").
-                antMatchers("/update/{id}").hasAnyRole("ADMIN").and(). exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler()).and()
-                .formLogin().and().rememberMe().and().
-                logout().deleteCookies();
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/addemployee").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/delete/{id}").hasAnyRole("ADMIN")
+                .antMatchers("/update/{id}").hasAnyRole("ADMIN")
+                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+                .and().formLogin()
+                .and().rememberMe()
+                .and().logout().deleteCookies();
+
     }
 
     @Bean
